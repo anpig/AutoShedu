@@ -1,6 +1,6 @@
 ## Usage 
 
-Run with administrator privilege
+Run `app.py` with administrator privilege
 
 Press F4 to switch on/off
 
