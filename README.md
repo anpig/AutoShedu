@@ -1,3 +1,9 @@
+## Dependency
+
+Run this first:
+
+`pip install pyautogui keyboard`
+
 ## Usage 
 
 Run `app.py` with administrator privilege
