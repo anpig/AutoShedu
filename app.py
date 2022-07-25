@@ -9,6 +9,9 @@ y = rect[1]
 w = rect[2] - x
 h = rect[3] - y
 
+print("press 'f4' to start/stop firing")
+print("press 'f8' to stop program")
+
 start = False    
 while True:
     if keyboard.is_pressed('f4'):
