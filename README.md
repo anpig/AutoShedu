@@ -3,7 +3,7 @@
 Run this first:
 
 ```
-pip install pyautogui keyboard pywin32
+pip install pyautogui pynput pywin32
 ```
 
 ## Usage 
