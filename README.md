@@ -3,7 +3,7 @@
 Run this first:
 
 ```
-pip install pyautogui pynput pywin32
+pip install pyautogui pynput pywin32 pywinauto
 ```
 
 ## Usage 

@@ -1,11 +1,11 @@
 import pyautogui
-# from pywinauto.application import Application
-# from pywinauto.keyboard import SendKeys
+from pywinauto.application import Application
+from pywinauto.keyboard import SendKeys
 import win32gui
 import time
 from pynput import keyboard
 
-# app = Application().connect(best_match="Warframe")
+app = Application().connect(best_match="Warframe")
 wf_winobj = win32gui.FindWindowEx(None, None, None, "Warframe")
 rect = win32gui.GetWindowRect(wf_winobj)
 x = rect[0]
@@ -17,10 +17,12 @@ print("press 'f4' to start firing")
 print("press 'f8' to stop program")
 
 start = False
+exit_program = False
 
 def on_press(key):
-    global start
+    global start, exit_program
     if key == keyboard.Key.f8:
+        exit_program = True
         return False  # stop listener
     try:
         k = key.char  # single-char keys
@@ -31,14 +33,33 @@ def on_press(key):
         start = ~start
         if start:
             print("started")
-            pyautogui.moveTo(x + w / 2, y + h / 2, duration = 0.5)
+            pyautogui.moveTo(x + w / 2, y + h / 2)
             pyautogui.click(button='left')
-            pyautogui.mouseDown(button = "left")
-            # app.window().send_keystrokes("u")
+            pyautogui.click(button='left')
+            # pyautogui.mouseDown(button = "left")
+            # while True:
+            #     time.sleep(0.1)
+            #     app.window().send_keystrokes("u")
         else:
-            print("stopped")
-            pyautogui.mouseUp(button = "left")
+            print("paused")
+            # pyautogui.mouseUp(button = "left")
 
-listener = keyboard.Listener(on_press=on_press)
-listener.start()  # start to listen on a separate thread
-listener.join()  # remove if main thread is polling self.keys
+# def hold(key):
+#     if key == keyboard.Key.f8:
+#         return False  # stop listener
+#     try:
+#         k = key.char  # single-char keys
+#     except:
+#         k = key.name  # other keys
+#     if k in ['f4']:  # keys of interest
+#         print()
+
+listener1 = keyboard.Listener(on_press=on_press)
+listener1.start()  # start to listen on a separate thread
+while True:
+    if start:
+        app.window().send_keystrokes("u")
+    if exit_program:
+        break
+    time.sleep(0.1)
+# listener1.join()  # remove if main thread is polling self.keys
