@@ -36,30 +36,14 @@ def on_press(key):
             pyautogui.moveTo(x + w / 2, y + h / 2)
             pyautogui.click(button='left')
             pyautogui.click(button='left')
-            # pyautogui.mouseDown(button = "left")
-            # while True:
-            #     time.sleep(0.1)
-            #     app.window().send_keystrokes("u")
+            app.window().send_keystrokes('f13')
         else:
             print("paused")
-            # pyautogui.mouseUp(button = "left")
+            pyautogui.moveTo(x + w / 2, y + h / 2)
+            pyautogui.click(button='left')
+            pyautogui.mouseDown(button = "left")
+            pyautogui.mouseUp(button = "left")
 
-# def hold(key):
-#     if key == keyboard.Key.f8:
-#         return False  # stop listener
-#     try:
-#         k = key.char  # single-char keys
-#     except:
-#         k = key.name  # other keys
-#     if k in ['f4']:  # keys of interest
-#         print()
-
-listener1 = keyboard.Listener(on_press=on_press)
-listener1.start()  # start to listen on a separate thread
-while True:
-    if start:
-        app.window().send_keystrokes("u")
-    if exit_program:
-        break
-    time.sleep(0.1)
-# listener1.join()  # remove if main thread is polling self.keys
+listener = keyboard.Listener(on_press=on_press)
+listener.start()  # start to listen on a separate thread
+listener.join()  # remove if main thread is polling self.keys
