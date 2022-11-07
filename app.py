@@ -36,7 +36,6 @@ def on_press(key):
             pyautogui.moveTo(x + w / 2, y + h / 2)
             pyautogui.click(button='left')
             pyautogui.click(button='left')
-            # pyautogui.press('f13')
             app.window().send_keystrokes('f13')
         else:
             print("paused")
