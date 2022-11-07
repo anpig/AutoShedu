@@ -5,7 +5,7 @@ import win32gui
 import time
 from pynput import keyboard
 
-app = Application().connect(best_match="Warframe")
+app = Application().connect(title = "Warframe")
 wf_winobj = win32gui.FindWindowEx(None, None, None, "Warframe")
 rect = win32gui.GetWindowRect(wf_winobj)
 x = rect[0]
@@ -36,6 +36,7 @@ def on_press(key):
             pyautogui.moveTo(x + w / 2, y + h / 2)
             pyautogui.click(button='left')
             pyautogui.click(button='left')
+            # pyautogui.press('f13')
             app.window().send_keystrokes('f13')
         else:
             print("paused")
